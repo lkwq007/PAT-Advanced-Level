@@ -97,14 +97,12 @@ int main()
 						if(set_union(citys,j,temp->no))
 						{
 							total--;
-
 						}
 					}
-					printf("%d\n",total);
 					temp=temp->next;
 				}
 			}
 		}
-		printf("%d\n",total-2);
+		printf("%d\n",total-2);//total_num-the_lost_city(1)=rest_sets; connections=rest_sets-1
 	}
 }
