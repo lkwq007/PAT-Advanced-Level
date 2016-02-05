@@ -1,37 +1,36 @@
 #include<stdio.h>
-#include<stdlib.h>
-int count[100],level[100],leaves[100];
+int isleaf[100],tree[100],leaves[100];
 int main()
 {
-	int i,j,n,m,k,child,parent,levels,temp,edge=0;
+	int i,j,n,m,k,child,parent,level,temp,edge=0;
 	scanf("%d%d",&n,&m);
-	count[1]=1;
+	isleaf[1]=1;
 	for(i=0;i<m;i++)
 	{
 		scanf("%d%d",&parent,&k);
-		count[parent]=-1;
+		isleaf[parent]=-1;
 		for(j=0;j<k;j++)
 		{
 			scanf("%d",&child);
-			if(count[child]!=-1)
-				count[child]=1;
-			level[child]=parent;
+			if(isleaf[child]!=-1)
+				isleaf[child]=1;
+			tree[child]=parent;
 		}
 	}
 	for(i=0;i<100;i++)
 	{
-		if(count[i]==1)
+		if(isleaf[i]==1)
 		{
-			levels=0;
+			level=0;
 			temp=i;
 			while(temp!=1)
 			{
-				levels++;
-				temp=level[temp];
+				level++;
+				temp=tree[temp];
 			}
-			if(levels>edge)
-				edge=levels;
-			leaves[levels]++;
+			if(level>edge)
+				edge=level;
+			leaves[level]++;
 		}
 	}
 	printf("%d",leaves[0]);
