@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-//没有考虑到 N=1 的情况
 typedef struct tree_
 {
 	int number;
