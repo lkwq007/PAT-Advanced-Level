@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<stdlib.h>
 int main()
 {
 	int n,b,flag=1,buf[32],i=0;
