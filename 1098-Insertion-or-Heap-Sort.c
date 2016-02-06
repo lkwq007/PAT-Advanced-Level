@@ -60,7 +60,7 @@ void percolate_down(int *data,int n,int pos)
 	}
 	data[pos]=temp;
 }
-void bulid_heap(int *data,int n)
+void build_heap(int *data,int n)
 {
 	int i;
 	for(i=n/2;i>0;i--)
@@ -93,8 +93,8 @@ int main()
 	{
 		scanf("%d",sorted_seq+i);
 	}
-	bulid_heap(initial_seq_c,n);
-	for(i=1;i<n;i++)
+	build_heap(initial_seq_c,n);
+	for(i=1;i<n;i++)//i=0 不属于插入排序的环节，我一开始偷懒 i=0 ，测试点 2 一直未能通过
 	{
 		insertion(initial_seq,i);
 		if(!seqcmp(initial_seq,sorted_seq,n))
