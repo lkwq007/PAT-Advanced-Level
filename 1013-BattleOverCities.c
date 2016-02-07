@@ -12,17 +12,20 @@ typedef struct
 } graph;
 int set_found(int *set,int no)
 {
-	int temp=no;
+	int temp=no,root;
 	while(set[temp]>0)
 	{
 		temp=set[temp];
 	}
-	while(set[no]>0)
+	root=temp;
+	temp=no;
+	while(set[temp]>0)
 	{
-		set[no]=temp;
-		no=set[no];
+		no=temp;
+		temp=set[temp];
+		set[no]=root;
 	}
-	return temp;
+	return root;
 }
 int set_union(int *set,int no_1,int no_2)
 {
