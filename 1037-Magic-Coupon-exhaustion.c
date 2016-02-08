@@ -1,0 +1,96 @@
+//毫不优雅的暴力穷举超时版……
+//不知自己为何会突然写出这么 low 的版本
+//作为黑历史留下来？还是直接删掉呢？
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int nc,np,*coupon,*product,i,max[2],min[2],total=0;
+	scanf("%d",&nc);
+	coupon=(int *)malloc(nc*sizeof(int));
+	for(i=0;i<nc;i++)
+	{
+		scanf("%d",coupon+i);
+	}
+	scanf("%d",&np);
+	product=(int *)malloc(np*sizeof(int));
+	for(i=0;i<np;i++)
+	{
+		scanf("%d",product+i);
+	}
+	while(1)
+	{
+		max[0]=-1;
+		max[1]=-1;
+		min[0]=-1;
+		min[1]=-1;
+		for(i=0;i<nc;i++)
+		{
+			if(coupon[i]==0)
+			{
+				continue;
+			}
+			if(coupon[i]<0)
+			{
+				if(min[0]==-1||coupon[min[0]]>coupon[i])
+				{
+					min[0]=i;
+				}
+			}
+			else
+			{
+				if(max[0]==-1||coupon[max[0]]<coupon[i])
+				{
+					max[0]=i;
+				}
+			}
+		}
+		for(i=0;i<np;i++)
+		{
+			if(product[i]==0)
+			{
+				continue;
+			}
+			if(product[i]<0)
+			{
+				if(min[1]==-1||product[min[1]]>product[i])
+				{
+					min[1]=i;
+				}
+			}
+			else
+			{
+				if(max[1]==-1||product[max[1]]<product[i])
+				{
+					max[1]=i;
+				}
+			}
+		}
+		if((min[0]==-1||min[1]==-1)&&(max[0]==-1||max[1]==-1))
+		{
+			break;
+		}
+		if(min[0]==-1||min[1]==-1)
+		{
+			total+=coupon[max[0]]*product[max[1]];
+			coupon[max[0]]=0;
+			product[max[1]]=0;
+		}
+		else if(max[0]==-1||max[1]==-1)
+		{
+			total+=coupon[min[0]]*product[min[1]];
+			coupon[min[0]]=0;
+			product[min[1]]=0;
+		}
+		else
+		{
+			total+=coupon[max[0]]*product[max[1]];
+			total+=coupon[min[0]]*product[min[1]];
+			coupon[min[0]]=0;
+			product[min[1]]=0;
+			coupon[max[0]]=0;
+			product[max[1]]=0;
+		}
+	}
+	printf("%d\n",total);
+}
