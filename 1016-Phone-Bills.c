@@ -32,28 +32,6 @@ int compare(const void *a,const void *b)
 		)
 	);
 }
-int compare_last(const void *a,const void *b)
-{
-	int value;
-	if(((clog *)a)->state==UNAVAILABLE)
-	{
-		return 1;
-	}
-	value=strcmp(((clog *)a)->name,((clog *)b)->name);
-	return value?value:
-	(
-		((clog *)a)->month-((clog *)b)->month?((clog *)a)->month-((clog *)b)->month:
-		(
-			((clog *)a)->day-((clog *)b)->day?((clog *)a)->day-((clog *)b)->day:
-			(
-				((clog *)a)->hour-((clog *)b)->hour?((clog *)a)->hour-((clog *)b)->hour:
-				(
-					((clog *)a)->minute-((clog *)b)->minute
-				)
-			)
-		)
-	);
-}
 int check(clog *t)
 {
 	int sum,i;
