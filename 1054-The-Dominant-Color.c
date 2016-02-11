@@ -30,6 +30,7 @@ int main()
 		while(table[pos].number!=-1&&table[pos].number!=temp)
 		{
 			pos+=(offset<<1)+1;
+			pos%=size;
 		}
 		table[pos].number=temp;
 		table[pos].count++;
