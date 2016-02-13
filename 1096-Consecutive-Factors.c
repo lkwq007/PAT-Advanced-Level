@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	long long n,i,j,temp,begin,count=0;
+	scanf("%lld",&n);
+	begin=n;
+	for(i=2;i<=sqrt((double)n);i++)
+	{
+		if(n%i==0)
+		{
+			temp=n;
+			for(j=i;j<=temp;j++)
+			{
+				if(temp%j!=0)
+				{
+					break;
+				}
+				temp/=j;
+			}
+			if(j-i>count)
+			{
+				begin=i;
+				count=j-i;
+			}
+			//i=j-1;我自认为是优化，然而却会使运算出错
+		}
+	}
+	if(count<2)
+	{
+		printf("1\n%lld",begin);
+		return 0;
+	}
+	printf("%lld\n",count);
+	printf("%lld",begin++);
+	for(i=1;i<count;i++)
+	{
+		printf("*%lld",begin++);
+	}
+}
