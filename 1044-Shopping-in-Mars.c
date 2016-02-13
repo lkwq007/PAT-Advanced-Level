@@ -12,34 +12,47 @@ int main()
 		total+=temp;
 		value[i+1]=total;
 	}
-	for(i=0;i<=n;i++)
+	i=0;
+	j=1;
+	while(i<n&&j<=n)
 	{
-		for(j=i+1;j<=n;j++)
+		while(value[j]-value[i]<m&&i<n&&j<=n)
 		{
-			if(value[j]-value[i]==m)
-			{
-				printf("%d-%d\n",i+1,j);
-				flag=0;
-				break;
-			}
-			else if(flag&&value[j]-value[i]>m&&(min==0||value[j]-value[i]-m<min))
+			j++;
+		}
+		if(value[j]-value[i]==m)
+		{
+			printf("%d-%d\n",i+1,j);
+			flag=0;
+			i++;
+		}
+		while(value[j]-value[i]>m&&i<n&&j<=n)
+		{
+			if(min==0||value[j]-value[i]-m<min)
 			{
 				min=value[j]-value[i]-m;
-				break;
 			}
+			i++;
 		}
 	}
+	i=0;
+	j=1;
 	if(flag)
 	{
-		for(i=0;i<=n;i++)
+		while(i<n&&j<=n)
 		{
-			for(j=i+1;j<=n;j++)
+			while(value[j]-value[i]<m+min&&i<n&&j<=n)
 			{
-				if(value[j]-value[i]-m==min)
-				{
-					printf("%d-%d\n",i+1,j);
-					break;
-				}
+				j++;
+			}
+			if(value[j]-value[i]==m+min)
+			{
+				printf("%d-%d\n",i+1,j);
+				i++;
+			}
+			while(value[j]-value[i]>m+min&&i<n&&j<=n)
+			{
+				i++;
 			}
 		}
 	}
