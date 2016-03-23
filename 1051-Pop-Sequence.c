@@ -75,7 +75,6 @@ int main()
 				pop(s,&temp);
 				continue;
 			}
-			//printf("%d-%d\n",temp,sequence);
 			if(sequence>n)
 			{
 				gets(buf);
@@ -93,7 +92,6 @@ int main()
 					goto end;
 				}
 			}
-			//push(s,temp);
 			sequence++;
 		}
 		printf("YES\n");

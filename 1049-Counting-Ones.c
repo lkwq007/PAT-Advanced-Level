@@ -32,7 +32,6 @@ int main()
 			}
 			buf[i]=0;
 			sscanf(buf,"%d",&pre);
-			pre;
 			buf[i]='1';
 			post=power(n-i-1);
 			total+=pre*post;
