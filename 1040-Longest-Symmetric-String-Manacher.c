@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	char buf[2002],c;
+	int rl[2002],max_right=0,pos=0,max=0,n,i=0;
+	while((c=getchar())!='\n')
+	{
+		buf[i++]=1;
+		buf[i++]=c;
+	}
+	buf[i++]=1;
+	buf[i]=0;
+	rl[0]=1;
+	n=i;
+	for(i=1;i<n-max;i++)
+	{
+		if(i>max_right)
+		{
+			rl[i]=1;
+		}
+		else
+		{
+			rl[i]=rl[2*pos-i]>max_right-i?max_right-i:rl[2*pos-i];
+		}
+		while(i-rl[i]>=0&&i+rl[i]<n&&buf[i+rl[i]]==buf[i-rl[i]])
+		{
+			rl[i]++;
+		}
+		if(i+rl[i]-1>max_right)
+		{
+			pos=i;
+			max_right=i+rl[i]-1;
+		}
+		if(rl[i]>max)
+		{
+			max=rl[i];
+		}
+	}
+	printf("%d\n",max-1);
+}
