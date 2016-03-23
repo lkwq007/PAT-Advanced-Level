@@ -126,9 +126,9 @@ int main()
 	for(i=0;i<2;i++)
 	{
 		path[i]=(vertex *)malloc(n*sizeof(vertex));
+		memset(path[i],0xFF,n*sizeof(vertex));
 		path[i][source].distance=0;
 		path[i][source].time_cost=0;
-		memset(path[i],0xFF,n*sizeof(vertex));
 	}
 	shortest_path(path[0],n);
 	fastest_path(path[1],n);
@@ -140,12 +140,9 @@ int main()
 		{
 			result[i][offset[i]++]=temp;
 			temp=path[i][temp].parent;
-			printf("%d\n",temp);
 		}
 		result[i][offset[i]]=temp;
 	}
-	for(i=0;i<offset[0];i++)
-		printf("%d\n",result[0][i]);
 	if(offset[0]==offset[1])
 	{
 		for(i=0;i<offset[0];i++)
@@ -155,7 +152,7 @@ int main()
 				break;
 			}
 		}
-		if(i!=offset[0])
+		if(i==offset[0])
 		{
 			printf("Distance = %d; Time = %d: ",path[0][destination].distance,path[0][destination].time_cost);
 			printf("%d",source);
@@ -167,13 +164,15 @@ int main()
 			return 0;
 		}
 	}
-	printf("Distance = %d: \n",path[0][destination].distance);
+	printf("Distance = %d: ",path[0][destination].distance);
+	printf("%d",source);
 	for(i=offset[0]-1;i>=0;i--)
 	{
 		printf(" -> %d",result[0][i]);
 	}
 	printf("\n");
-	printf("Time = %d: \n",path[1][destination].time_cost);
+	printf("Time = %d: ",path[1][destination].time_cost);
+	printf("%d",source);
 	for(i=offset[1]-1;i>=0;i--)
 	{
 		printf(" -> %d",result[1][i]);
